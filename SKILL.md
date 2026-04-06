@@ -7,8 +7,20 @@ description: Handles working on specs in ~/specs-workspace and notifying the rem
 
 This skill defines the workflow for working on specifications and notifying the user remotely. **Notification is mandatory for all lengthy or multi-step tasks.**
 
-## Mandatory Rules
+## Installation & Setup
 
+After installing the skill, run the one-time setup script to configure your system:
+```bash
+# Locate your skill directory (e.g., ~/.gemini/skills/remote-spec-worker)
+bash ~/.gemini/skills/remote-spec-worker/scripts/setup.sh
+```
+This script will:
+- Link the `spec-status` command to `/usr/local/bin`.
+- Prompt for your Slack Webhook URL.
+- Verify your GitHub CLI permissions.
+
+## Mandatory Rules
+...
 1.  **System Sleep**: Always run `stay_awake.sh start` before starting a task and `stay_awake.sh stop` after completion.
 2.  **Automatic Notification**: You MUST call `notify.sh` after completing any task that:
     - Takes more than 30 seconds of processing.
