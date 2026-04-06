@@ -15,7 +15,7 @@ After installing the skill, run the one-time setup script to configure your syst
 bash ~/.gemini/skills/remote-spec-worker/scripts/setup.sh
 ```
 This script will:
-- Link the `spec-status` command to `/usr/local/bin`.
+- Link the `worker-status` command to `/usr/local/bin`.
 - Prompt for your Slack Webhook URL.
 - Verify your GitHub CLI permissions.
 

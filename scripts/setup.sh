@@ -12,12 +12,12 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 SKILL_DIR="$(dirname "$SCRIPT_DIR")"
 
 # 2. Create the symlink in /usr/local/bin
-echo -e "🔗 Linking 'spec-status' to /usr/local/bin..."
-if ln -sf "$SCRIPT_DIR/dashboard.sh" /usr/local/bin/spec-status 2>/dev/null; then
+echo -e "🔗 Linking 'worker-status' to /usr/local/bin..."
+if ln -sf "$SCRIPT_DIR/dashboard.sh" /usr/local/bin/worker-status 2>/dev/null; then
   echo -e "✅ Linked successfully."
 else
   echo -e "⚠️ Permission denied. Trying with sudo..."
-  sudo ln -sf "$SCRIPT_DIR/dashboard.sh" /usr/local/bin/spec-status
+  sudo ln -sf "$SCRIPT_DIR/dashboard.sh" /usr/local/bin/worker-status
   echo -e "✅ Linked successfully with sudo."
 fi
 
