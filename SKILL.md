@@ -5,20 +5,28 @@ description: Handles working on specs in ~/specs-workspace and notifying the rem
 
 # Remote Spec Worker
 
-This skill defines the workflow for working on specifications and notifying the user remotely when tasks are completed. It also includes tools to keep the system awake while working.
+This skill defines the workflow for working on specifications and notifying the user remotely. **Notification is mandatory for all lengthy or multi-step tasks.**
+
+## Mandatory Rules
+
+1.  **System Sleep**: Always run `stay_awake.sh start` before starting a task and `stay_awake.sh stop` after completion.
+2.  **Automatic Notification**: You MUST call `notify.sh` after completing any task that:
+    - Takes more than 30 seconds of processing.
+    - Involves multiple tool calls or turns.
+    - Results in a significant file change (e.g., a new spec or a major edit).
 
 ## Workflow
 
-1.  **Keep System Awake**: Before starting a long-running task, ensure the system won't sleep.
+1.  **Keep System Awake**: 
     ```bash
     bash scripts/stay_awake.sh start
     ```
-2.  **Work on Specs**: Write, edit, or review the spec files located in `~/specs-workspace`. Ensure the work is comprehensive and meets the user's requirements.
-3.  **Notify User**: When the task is completed or you need the user's feedback, run the notification script.
+2.  **Work on Specs**: Perform the requested drafting, editing, or research.
+3.  **Automatic Notify**: 
     ```bash
-    bash scripts/notify.sh "Your message here. E.g., The architecture spec is ready for review."
+    bash scripts/notify.sh "Completed: [Task Name]. [Brief summary of result]."
     ```
-4.  **Allow Sleep**: Once finished, allow the system to sleep normally.
+4.  **Allow Sleep**: 
     ```bash
     bash scripts/stay_awake.sh stop
     ```
