@@ -37,16 +37,8 @@ if ! gh auth status --hostname github.com | grep -q "codespace"; then
   echo "Run: gh auth refresh -s codespace"
 else
   # List codespaces and colorize the state
-  gh codespace list --json name,repository,state,lastUsedAt --template '
-    {{range .}}
-      {{- if eq .state "Available" -}}
-        {{- printf "✅ %-30s | %-25s | \033[0;32m%s\033[0m\n" .name .repository.name .state -}}
-      {{- else if eq .state "Active" -}}
-        {{- printf "🚀 %-30s | %-25s | \033[1;33m%s\033[0m (BILLING)\n" .name .repository.name .state -}}
-      {{- else -}}
-        {{- printf "⏳ %-30s | %-25s | %s\n" .name .repository.name .state -}}
-      {{- end -}}
-    {{end}}'
+  # Using a simpler template to avoid quoting issues
+  gh codespace list --json name,repository,state --template '{{range .}}{{if or (eq .state "Available") (eq .state "Shutdown")}}{{printf "✅ %-30s | %-25s | \033[0;32m%s\033[0m\n" .name .repository .state}}{{else if eq .state "Active"}}{{printf "🚀 %-30s | %-25s | \033[1;33m%s\033[0m (BILLING)\n" .name .repository .state}}{{else}}{{printf "⏳ %-30s | %-25s | %s\n" .name .repository .state}}{{end}}{{end}}'
 fi
 echo ""
 
