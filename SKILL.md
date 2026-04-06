@@ -33,6 +33,8 @@ This skill defines the workflow for working on specifications and notifying the 
 
 ## Utility Scripts
 
+- **`dashboard.sh`**: Shows a unified view of your local laptop status and active cloud workers.
+  - `bash scripts/dashboard.sh`: Shows power status, sleep assertions, and a list of running/sleeping Codespaces.
 - **`stay_awake.sh`**: Checks power status and manages `caffeinate` to prevent system sleep.
   - `bash scripts/stay_awake.sh check`: Warns if on battery or if sleep is enabled.
   - `bash scripts/stay_awake.sh start`: Starts a background `caffeinate` process.
